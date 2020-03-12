@@ -1,0 +1,231 @@
+
+day02-课堂笔记
+
+1、打开DOS命令窗口，执行java HelloWorld，执行原理？
+	* java.exe命令会启动JVM
+	* JVM启动之后会启动类加载器ClassLoader
+	* ClassLoader会在硬盘上的某个位置搜索HelloWorld.class字节码文件
+	* 找到该文件则执行
+	* 找不到该文件则报错
+
+	疑问:ClassLoader是在哪个位置上搜索HelloWorld.class字节码文件的？
+		* 默认情况下，ClassLoader从当前路径下加载xxx.class字节码文件
+		* 当然，也可以让ClassLoader去某个指定的路径下加载字节码文件，这时需要配置环境变量classpath
+		* classpath环境变量属于java语言中的环境变量，不属于windows操作系统【PATH环境变量属于操作系统】
+		* classpath是给ClassLoader类加载器指路的。
+		* 设置这样的环境变量：classpath=D:\course\JavaProjects\02-JavaSE\day02
+			- 打开dos命令窗口在任意位置，都可以执行：java HelloWorld
+		* classpath环境变量没有配置的话，类加载器默认从当前路径下找字节码文件，
+		当classpath环境变量配置为某个指定的路径之后，类加载器只去指定的路径当中加载字节码文件。
+		* 综上所述，环境变量classpath不再配置，这样类加载器会自动从当前路径下加载class字节码文件。
+		所以，每一次执行.class程序的时候，需要在DOS命令窗口中先切换到.class字节码文件所在的路径下。
+		然后运行。
+		* 当然，classpath也可以这样配置：classpath=.
+
+		注意：
+			路径中“..”表示上级目录
+			路径中“.”表示当前目录
+
+2、关于java源程序当中的注释：
+	
+	* 什么是注释？注释的作用是什么？
+		- 出现在java的源程序当中，对java源代码的解释说明
+		- 注释不会被编译到.class字节码文件当中
+		- 一个好的开发习惯应该是多编写注释，这样程序的可读性比较强。
+	
+	* java中的注释怎么写呢？
+		- 单行注释
+			//单行注释，只注释当前行
+
+		- 多行注释
+			/*
+				多行注释
+				多行注释
+				多行注释
+				多行注释
+				多行注释
+				.....
+			*/
+
+		- javadoc注释 
+			/**
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*	javadoc注释
+			*/
+			注意：这种注释是比较专业的注释，该注释信息会被javadoc.exe工具解析提取并生成帮助文档。
+
+3、类体概念的说明及缩进
+	1、在java中任何有效的代码必须写到“类体”当中，最外层必须是一个类的定义。
+	2、public表示公开的，class表示定义一个类，后跟着类名，类名后面一对大括弧。
+	3、低级需要内缩进
+
+4、对HelloWorld程序进行解释：
+	需要记忆：
+		* public
+		* class
+		* static
+		* void
+		* args位置内容可以更改
+		* System.out.println(""); 向控制台输出消息
+		* 类体
+		* 方法体,必须在类体中
+		* 类体中不能直接编写java语句【除声明变量之外】
+		* 一个java语句必须以“;”结束
+		* 方法体中可以编写多条java语句，非常重要的是方法体中的代码遵循自上而下的顺序依次逐行执行。
+		* 主方法是程序的入口，固定写法，SUN规定的。
+
+	public class HelloWorld {
+		public static void main(String[] args{   //main方法是程序的入口，固定写法，SUN规定的
+			System.out.println("Hello world!"); 
+		}
+	}
+
+5、public class 和 class的区别：
+	
+	* 一个java源文件当中可以定义多个class
+
+	* 一个java源文件当中public的class不是必须的
+
+	* 一个class会定义生成一个xxx.class字节码文件
+
+	* 一个java源文件当中定义公开的类的话，只能有一个，并且该类名称必须和java源文件名称一致。
+
+	* 每一个class当中都可以编写main方法，都可以设定程序的入口，想执行B.class中的main方法：java B，
+	想执行X.class当中的main方法：java X
+
+	* 注意：当在命令窗口中执行java Hello，那么要求Hello.class当中必须有主方法。没有主方法会出现运行
+	阶段的错误：
+		D:\course\JavaProjects\02-JavaSE\day02>java Hello
+		错误: 在类 B 中找不到主方法, 请将主方法定义为:
+			public static void main(String[] args)
+
+6、总结第一章需要掌握的内容：
+	* 理解java的加载与执行
+	* 能够自己搭建java的开发环境
+	* 能够独立编写HelloWorld程序，编译并运行
+	* 掌握环境变量path的原理以及如何配置
+	* 掌握环境变量classpath的原理以及如何配置
+	* java中的注释
+	* public class 和 class 的区别
+	
+
+第二章：java语言基础
+
+1、标识符 ---见BiaoShiFuTest.java 代码
+	1.1、什么是标识符，标识符可以干什么？
+	1.2、标识符的命名规则。
+	1.3、标识符的命名规范
+
+2、关键字 
+	3.1、什么是关键字？
+	在SUN公司开发java语言的时候，提前定义好了一些具有特殊含义的单词，这些单词全部小写具有特殊含义。
+	在editplus中蓝色的是关键字。
+
+	3.2关键字有那些？
+	很多，随着代码写多了就知道了。
+
+3、字面量
+	在java代码中，怎么去表示数据呢？在java中有这样一个概念：字面量。
+	在java语言中数据被称之为“字面量”。
+
+	****所有的字符型数据都只能使用单引号括起来''
+	****所有的字符串型数据都只能使用双引号括起来""
+	****但是中文可以单也可以双
+	
+
+4、变量 ---见 VarTest01.java
+	4.1 什么是变量？
+	4.2 变量怎么定义/声明？
+	4.3 变量名注意事项
+	4.4 关于一个变量名的分类
+	4.5 变量作用域
+
+5、数据类型 
+	
+	1.1数据类型有什么用？
+	   数据类型用来声明变量，程序在运行过程中根据不同的数据类型分配不同大小的空间。
+	
+	1.2 数据类型在java语言中包括两种：
+	  第一种：基本数据类型：
+	  	基本数据类型又可以划分为4大类8小种：
+			第一类：整数型
+			int long short byte
+			第二类：浮点型
+			double float
+			第三类：布尔型
+			boolean：只有两个值true和false
+			第四类：字符型
+			char
+		      
+	  第二种：引用数据类型
+	  	字符串型String属于引用数据类型，不属于基本数据类型。
+		java、中除了基本书籍类型之外，剩下的都是引用数据类型
+	
+	1.3 8种基本数据类型中
+		整数型：btye short int long有什么区别？1 2 4 8 byte
+		浮点型：float和double有什么区别？
+		区别：占用空间的大小。
+
+		关于计算机存储单位？
+			计算机只能识别二进制（01010101011111........）
+			1字节 = 8比特 ----》 1 byte = 8 bit
+			1 bit就是一个0或者1
+			1 KB = 1024 byte
+			1 MB = 1024 KB
+			1 GB = 1024 MB
+			1 TB = 1024 GB
+		
+		类型		占用字节数量（byte）
+		-----------------------------------------------
+		byte			1
+		short			2
+		int			4
+		long			8
+		float			4
+		double			8
+		boolean			1
+		char			2
+	
+	1.4 字符编码
+		字符编码是人为的定义的一套转换表。
+		在字符编码中规定了一系列的文字对应的二进制。
+		字符编码其实本质就是一本字典，该字段中描述的文字与二进制之间的对照关系。
+		字符编码是人为规定的。（是某个计算机协会规定的）
+		
+	    字符编码涉及到编码和解码两个过程，编码和解码的时候必须采用同一套字符编码方式，不然就会出现乱码。
+	    	英文对应的字符编码方式是：ASCII码
+		ASCII码采用1byte进行存储，因为英文字母是26个，1byte可以表示256种情况。
+		‘a’ ----> 98 'b' ---->'99'.........
+
+		在java中为了统一采用了unicode编码。包括UTF-8，UTF-16，UTF-32
+	
+	1.5 八种基本数据类型详解
+		字符型 char ---见CharTest.java
+		整数型 byte short int long --- 见IntTest.java
+			byte b = 127 //可以直接赋值
+			short s = 32767 //可以直接赋值
+			char // 没有超出char的取值范围可以直接赋值吗？可以  ---- 见CharTset02.java
+
+			二进制补码反码 ---- 见IntTset02.java
+
+			byte、char、short 做混合运算的时候，各自先转换成int在做运算。
+			多种数据做混合运算的时候，最终的结果类型是“最大容量”的那个类型，但是byte+short+char除外。
+
+		浮点型 float double ---见FloatTest01.java
+		布尔型 boolean ---见BooleanTest.java
+	
+	1.6 综合的看一下，在类型转换的时候需要遵循那些规则？
+
+	1：八种基本数据类型中，除了Boolean类型不能转换，剩下的七种数据类型都可以进行转换；
+	2：如果整数型字面量没有超出byte、short、char的取值范围，可以直接将其赋值给byte、short、char类型的变量；
+	3：小容量向大容量转换称之为自动类型转换，容量从大到小排列：
+		byte < short(char) < int < long < float < double，其中short和char都占用两个字节，凡是char可以表示更大的数值；
+	4：大容量转换成小容量称为强制类型转换，编写时必须注意添加“强制类型转换符”，且运行时存在精度损失。
+	5：byte、short、int、long类型混合运算时，各自先转换成int类型在做运算。
+	6：多种数据类型混合运算时，各自先转换成容量最大的那一部分在进行计算。
+
+

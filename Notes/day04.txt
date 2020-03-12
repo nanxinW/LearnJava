@@ -1,0 +1,35 @@
+day04-课堂笔记
+
+1、接受用户键盘输入 ---见KeyInput.java
+
+2、控制语句
+
+	* 选择结构
+		- if,if..else ---见IfTest01.java
+		- switch ---见SwitchTest01.java
+
+	* 循环结构
+		- for ---见ForTest01.java ForTest02.java
+		- while ---见WhileTest.java
+		- do..while、
+			/*
+			do....while 循环语句的执行原理和语法机制？
+				语法机制：
+					do{
+						循环体;
+					}while();
+				注意，do....while最后不要忘记分号！！！
+
+				语法机制：
+					先执行一次循环体，在进行while判断，true就继续循环。
+			*/
+
+	* 控制循环的语句
+		- break ---见BreakTest.java
+		- continue
+			continue语句的作用：
+				终止本次循环，直接进入下一次循环继续执行
+				在continue下面的代码不会执行。
+
+				continue也可以执行指定循环。
+		- return
